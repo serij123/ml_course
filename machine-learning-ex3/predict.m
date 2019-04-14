@@ -5,10 +5,15 @@ function p = predict(Theta1, Theta2, X)
 
 % Useful values
 m = size(X, 1);
+n=size(X, 2);
 num_labels = size(Theta2, 1);
 
+p_hidden=sigmoid([ones(m,1),X]*Theta1');
+pred=sigmoid([ones(size(p_hidden,1),1),p_hidden]*Theta2');
+[p_max,p]=max(pred');
+p=p';
 % You need to return the following variables correctly 
-p = zeros(size(X, 1), 1);
+...p = zeros(size(X, 1), 1);
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using

@@ -17,6 +17,15 @@ p = zeros(size(X, 1), 1);
 % Add ones to the X data matrix
 X = [ones(m, 1) X];
 
+for i=1:m
+  pp=zeros(num_labels, 1);
+  for label_num=1:num_labels
+    pp(label_num)=sigmoid(X(i,:)*all_theta(label_num,:)');
+  endfor
+  [m,p(i)]=max(pp);
+endfor
+
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
 %               your learned logistic regression parameters (one-vs-all).
