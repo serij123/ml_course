@@ -17,13 +17,9 @@ p = zeros(size(X, 1), 1);
 % Add ones to the X data matrix
 X = [ones(m, 1) X];
 
-for i=1:m
-  pp=zeros(num_labels, 1);
-  for label_num=1:num_labels
-    pp(label_num)=sigmoid(X(i,:)*all_theta(label_num,:)');
-  endfor
-  [m,p(i)]=max(pp);
-endfor
+pred=sigmoid(X*all_theta');
+[p_max,p]=max(pred');
+p=p';
 
 
 % ====================== YOUR CODE HERE ======================
