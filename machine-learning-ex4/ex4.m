@@ -39,7 +39,7 @@ m = size(X, 1);
 sel = randperm(size(X, 1));
 sel = sel(1:100);
 
-displayData(X(sel, :));
+...displayData(X(sel, :));
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -83,6 +83,9 @@ fprintf(['Cost at parameters (loaded from ex4weights): %f '...
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
+
+
+
 %% =============== Part 4: Implement Regularization ===============
 %  Once your cost function implementation is correct, you should now
 %  continue to implement the regularization with the cost.
@@ -103,6 +106,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
+
 %% ================ Part 5: Sigmoid Gradient  ================
 %  Before you start implementing the neural network, you will first
 %  implement the gradient for the sigmoid function. You should complete the
@@ -118,6 +122,7 @@ fprintf('\n\n');
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
 
 
 %% ================ Part 6: Initializing Pameters ================
@@ -143,11 +148,16 @@ initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
 %
 fprintf('\nChecking Backpropagation... \n');
 
+
+
+
 %  Check gradients by running checkNNGradients
-checkNNGradients;
+%checkNNGradients;
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
+
+
 
 
 %% =============== Part 8: Implement Regularization ===============
@@ -159,7 +169,7 @@ fprintf('\nChecking Backpropagation (w/ Regularization) ... \n')
 
 %  Check gradients by running checkNNGradients
 lambda = 3;
-checkNNGradients(lambda);
+%checkNNGradients(lambda);
 
 % Also output the costFunction debugging values
 debug_J  = nnCostFunction(nn_params, input_layer_size, ...
