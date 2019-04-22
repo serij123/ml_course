@@ -74,14 +74,19 @@ fprintf('\nFeedforward Using Neural Network ...\n')
 % Weight regularization parameter (we set this to 0 here).
 lambda = 0;
 
-J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
-                   num_labels, X, y, lambda);
+yMatr=zeros(size(y, 1), num_labels);
+for i=1:size(y, 1)
+  yMatr(i, y(i)) = 1;
+endfor;
+J = nnCostFunctionMatr(nn_params, input_layer_size, hidden_layer_size, ...
+                   num_labels, X, yMatr, lambda);
 
 fprintf(['Cost at parameters (loaded from ex4weights): %f '...
          '\n(this value should be about 0.287629)\n'], J);
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
+
 
 
 
@@ -96,8 +101,10 @@ fprintf('\nChecking Cost Function (w/ Regularization) ... \n')
 % Weight regularization parameter (we set this to 1 here).
 lambda = 1;
 
-J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
-                   num_labels, X, y, lambda);
+%J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
+%                   num_labels, X, y, lambda);
+J = nnCostFunctionMatr(nn_params, input_layer_size, hidden_layer_size, ...
+                   num_labels, X, yMatr, lambda);
 
 fprintf(['Cost at parameters (loaded from ex4weights): %f '...
          '\n(this value should be about 0.383770)\n'], J);
@@ -152,7 +159,7 @@ fprintf('\nChecking Backpropagation... \n');
 
 
 %  Check gradients by running checkNNGradients
-%checkNNGradients;
+checkNNGradients;
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
@@ -172,8 +179,10 @@ lambda = 3;
 %checkNNGradients(lambda);
 
 % Also output the costFunction debugging values
-debug_J  = nnCostFunction(nn_params, input_layer_size, ...
-                          hidden_layer_size, num_labels, X, y, lambda);
+%debug_J  = nnCostFunction(nn_params, input_layer_size, ...
+%                          hidden_layer_size, num_labels, X, y, lambda);
+debug_J  = nnCostFunctionMatr(nn_params, input_layer_size, ...
+                          hidden_layer_size, num_labels, X, yMatr, lambda);
 
 fprintf(['\n\nCost at (fixed) debugging parameters (w/ lambda = %f): %f ' ...
          '\n(for lambda = 3, this value should be about 0.576051)\n\n'], lambda, debug_J);
@@ -193,16 +202,21 @@ fprintf('\nTraining Neural Network... \n')
 
 %  After you have completed the assignment, change the MaxIter to a larger
 %  value to see how more training helps.
-options = optimset('MaxIter', 50);
+%options = optimset('MaxIter', 50);
+options = optimset('GradObj', 'on', 'MaxIter', 400);
 
 %  You should also try different values of lambda
 lambda = 1;
 
 % Create "short hand" for the cost function to be minimized
-costFunction = @(p) nnCostFunction(p, ...
+%costFunction = @(p) nnCostFunction(p, ...
+%                                   input_layer_size, ...
+%                                   hidden_layer_size, ...
+%                                   num_labels, X, y, lambda);
+costFunction = @(p) nnCostFunctionMatr(p, ...
                                    input_layer_size, ...
                                    hidden_layer_size, ...
-                                   num_labels, X, y, lambda);
+                                   num_labels, X, yMatr, lambda);
 
 % Now, costFunction is a function that takes in only one argument (the
 % neural network parameters)

@@ -23,13 +23,19 @@ Theta2 = debugInitializeWeights(num_labels, hidden_layer_size);
 % Reusing debugInitializeWeights to generate X
 X  = debugInitializeWeights(m, input_layer_size - 1);
 y  = 1 + mod(1:m, num_labels)';
+yMatr=zeros(size(y, 1), num_labels);
+for i=1:size(y, 1)
+  yMatr(i, y(i)) = 1;
+endfor;
 
 % Unroll parameters
 nn_params = [Theta1(:) ; Theta2(:)];
 
 % Short hand for cost function
-costFunc = @(p) nnCostFunction(p, input_layer_size, hidden_layer_size, ...
-                               num_labels, X, y, lambda);
+%costFunc = @(p) nnCostFunction(p, input_layer_size, hidden_layer_size, ...
+%                               num_labels, X, y, lambda);
+costFunc = @(p) nnCostFunctionMatr(p, input_layer_size, hidden_layer_size, ...
+                               num_labels, X, yMatr, lambda);
 
 [cost, grad] = costFunc(nn_params);
 numgrad = computeNumericalGradient(costFunc, nn_params);
