@@ -16,10 +16,18 @@ function [error_train, error_val] = ...
 
 % Number of training examples
 m = size(X, 1);
-
-% You need to return these values correctly
 error_train = zeros(m, 1);
 error_val   = zeros(m, 1);
+
+% You need to return these values correctly
+for i=1:m
+  Xi = X(1:i,:);
+  yi=y(1:i);
+  [theta] = trainLinearReg(Xi, yi, lambda);
+  error_train(i)=linearRegCostFunction(Xi, yi, theta, 0);
+  error_val(i)=linearRegCostFunction(Xval, yval, theta, 0);
+endfor
+
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Fill in this function to return training errors in 

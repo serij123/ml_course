@@ -42,6 +42,8 @@ ylabel('Water flowing out of the dam (y)');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
+
+
 %% =========== Part 2: Regularized Linear Regression Cost =============
 %  You should now implement the cost function for regularized linear 
 %  regression. 
@@ -72,6 +74,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
+
 %% =========== Part 4: Train Linear Regression =============
 %  Once you have implemented the cost and gradient correctly, the
 %  trainLinearReg function will use your cost function to train 
@@ -90,6 +93,7 @@ plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
 xlabel('Change in water level (x)');
 ylabel('Water flowing out of the dam (y)');
 hold on;
+plot(Xval, yval, 'go', 'MarkerSize', 10, 'LineWidth', 1.5);
 plot(X, [ones(m, 1) X]*theta, '--', 'LineWidth', 2)
 hold off;
 
@@ -124,6 +128,15 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
+
+if 1==1
+  return;
+endif
+
+
+
+
 
 %% =========== Part 6: Feature Mapping for Polynomial Regression =============
 %  One solution to this is to use polynomial regression. You should now
