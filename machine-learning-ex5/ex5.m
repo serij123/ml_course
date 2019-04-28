@@ -35,6 +35,7 @@ load ('ex5data1.mat');
 m = size(X, 1);
 
 % Plot training data
+figure(1);
 plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
 xlabel('Change in water level (x)');
 ylabel('Water flowing out of the dam (y)');
@@ -107,7 +108,7 @@ pause;
 %  Write Up Note: Since the model is underfitting the data, we expect to
 %                 see a graph with "high bias" -- Figure 3 in ex5.pdf 
 %
-
+figure(2);
 lambda = 0;
 [error_train, error_val] = ...
     learningCurve([ones(m, 1) X], y, ...
@@ -128,11 +129,6 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
-
-
-if 1==1
-  return;
-endif
 
 
 
@@ -181,14 +177,20 @@ lambda = 0;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
 % Plot training data and fit
-figure(1);
+figure(3);
+
 plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
+hold on;
+plot(Xval, yval, 'go', 'MarkerSize', 10, 'LineWidth', 1.5);
+hold on;
 plotFit(min(X), max(X), mu, sigma, theta, p);
+
 xlabel('Change in water level (x)');
 ylabel('Water flowing out of the dam (y)');
+hold off;
 title (sprintf('Polynomial Regression Fit (lambda = %f)', lambda));
 
-figure(2);
+figure(4);
 [error_train, error_val] = ...
     learningCurve(X_poly, y, X_poly_val, yval, lambda);
 plot(1:m, error_train, 1:m, error_val);
@@ -213,11 +215,12 @@ pause;
 %  lambda on a validation set. You will then use this to select the
 %  "best" lambda value.
 %
+figure(5);
 
 [lambda_vec, error_train, error_val] = ...
     validationCurve(X_poly, y, X_poly_val, yval);
 
-close all;
+%close all;
 plot(lambda_vec, error_train, lambda_vec, error_val);
 legend('Train', 'Cross Validation');
 xlabel('lambda');
