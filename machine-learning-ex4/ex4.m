@@ -16,7 +16,9 @@
 %
 
 %% Initialization
-clear ; close all; clc
+clear ; 
+close all; 
+clc
 
 %% Setup the parameters you will use for this exercise
 input_layer_size  = 400;  % 20x20 Input Images of Digits
@@ -203,7 +205,7 @@ fprintf('\nTraining Neural Network... \n')
 %  After you have completed the assignment, change the MaxIter to a larger
 %  value to see how more training helps.
 %options = optimset('MaxIter', 50);
-options = optimset('GradObj', 'on', 'MaxIter', 400);
+options = optimset('GradObj', 'on', 'MaxIter', 50);
 
 %  You should also try different values of lambda
 lambda = 1;
@@ -240,7 +242,8 @@ pause;
 
 fprintf('\nVisualizing Neural Network... \n')
 
-displayData(Theta1(:, 2:end));
+%displayData(Theta1(:, 2:end));
+displayData((Theta2(:,2:end)*Theta1)(:, 2:end));
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
