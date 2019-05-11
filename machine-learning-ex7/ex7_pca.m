@@ -68,6 +68,8 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
+
+
 %% =================== Part 3: Dimension Reduction ===================
 %  You should now implement the projection step to map the data onto the 
 %  first k eigenvectors. The code will then plot the data in this reduced 
@@ -103,6 +105,7 @@ hold off
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
+
 %% =============== Part 4: Loading and Visualizing Face Data =============
 %  We start the exercise by first loading and visualizing the dataset.
 %  The following code will load the dataset into your environment
@@ -113,6 +116,7 @@ fprintf('\nLoading face dataset.\n\n');
 load ('ex7faces.mat')
 
 %  Display the first 100 faces in the dataset
+figure(2);
 displayData(X(1:100, :));
 
 fprintf('Program paused. Press enter to continue.\n');
@@ -133,6 +137,7 @@ fprintf(['\nRunning PCA on face dataset.\n' ...
 [U, S] = pca(X_norm);
 
 %  Visualize the top 36 eigenvectors found
+figure(3);
 displayData(U(:, 1:36)');
 
 fprintf('Program paused. Press enter to continue.\n');
@@ -164,6 +169,7 @@ K = 100;
 X_rec  = recoverData(Z, U, K);
 
 % Display normalized data
+figure(4);
 subplot(1, 2, 1);
 displayData(X_norm(1:100,:));
 title('Original faces');

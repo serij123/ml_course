@@ -46,6 +46,8 @@ fprintf('\n(the closest centroids should be 1, 3, 2 respectively)\n');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
+
+
 %% ===================== Part 2: Compute Means =========================
 %  After implementing the closest centroids function, you should now
 %  complete the computeCentroids function.
@@ -106,7 +108,8 @@ pause;
 fprintf('\nRunning K-Means clustering on pixels from an image.\n\n');
 
 %  Load an image of a bird
-A = double(imread('bird_small.png'));
+%A = double(imread('bird_small.png'));
+A = double(imread('img1_my.png'));
 
 % If imread does not work for you, you can try instead
 %   load ('bird_small.mat');
