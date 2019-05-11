@@ -9,6 +9,7 @@ function word_indices = processEmail(email_contents)
 % Load Vocabulary
 vocabList = getVocabList();
 
+
 % Init return value
 word_indices = [];
 
@@ -54,6 +55,8 @@ fprintf('\n==== Processed Email ====\n\n');
 % Process file
 l = 0;
 
+
+wordIdx=1;
 while ~isempty(email_contents)
 
     % Tokenize and also get rid of any punctuation
@@ -74,7 +77,15 @@ while ~isempty(email_contents)
     if length(str) < 1
        continue;
     end
-
+    
+    for i=1:length(vocabList)
+      if strcmp(vocabList{i}, str)
+        word_indices(wordIdx) = i;
+        wordIdx++;
+        break;
+      endif
+    endfor
+    
     % Look up the word in the dictionary and add to word_indices if
     % found
     % ====================== YOUR CODE HERE ======================

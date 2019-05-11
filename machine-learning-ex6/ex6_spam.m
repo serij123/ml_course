@@ -40,6 +40,7 @@ fprintf('\n\n');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
+
 %% ==================== Part 2: Feature Extraction ====================
 %  Now, you will convert each email into a vector of features in R^n. 
 %  You should complete the code in emailFeatures.m to produce a feature
@@ -58,6 +59,7 @@ fprintf('Number of non-zero entries: %d\n', sum(features > 0));
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
 
 %% =========== Part 3: Train Linear SVM for Spam Classification ========
 %  In this section, you will train a linear classifier to determine if an
@@ -125,14 +127,14 @@ pause;
 % Set the file to be read in (change this to spamSample2.txt,
 % emailSample1.txt or emailSample2.txt to see different predictions on
 % different emails types). Try your own emails as well!
-filename = 'spamSample1.txt';
 
 % Read and predict
-file_contents = readFile(filename);
-word_indices  = processEmail(file_contents);
-x             = emailFeatures(word_indices);
-p = svmPredict(model, x);
+fprintf('(1 indicates spam, 0 indicates not spam):\n\n');
 
-fprintf('\nProcessed %s\n\nSpam Classification: %d\n', filename, p);
-fprintf('(1 indicates spam, 0 indicates not spam)\n\n');
+
+fprintf('Processed %s:Spam Classification: %d\n', 'spamSample1.txt', classifySpam('spamSample1.txt', model));
+fprintf('Processed %s:Spam Classification: %d\n', 'spamSample2.txt', classifySpam('spamSample2.txt', model));
+fprintf('Processed %s:Spam Classification: %d\n', 'emailSample1.txt', classifySpam('emailSample1.txt', model));
+fprintf('Processed %s:Spam Classification: %d\n', 'emailSample2.txt', classifySpam('emailSample2.txt', model));
+
 
