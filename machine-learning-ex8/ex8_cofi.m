@@ -69,6 +69,8 @@ fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
+
+
 %% ============== Part 3: Collaborative Filtering Gradient ==============
 %  Once your cost function matches up with ours, you should now implement 
 %  the collaborative filtering gradient function. Specifically, you should 
@@ -222,7 +224,7 @@ movieList = loadMovieList();
 
 [r, ix] = sort(my_predictions, 'descend');
 fprintf('\nTop recommendations for you:\n');
-for i=1:10
+for i=1:length(movieList)/100
     j = ix(i);
     fprintf('Predicting rating %.1f for movie %s\n', my_predictions(j), ...
             movieList{j});
@@ -235,3 +237,4 @@ for i = 1:length(my_ratings)
                  movieList{i});
     end
 end
+
