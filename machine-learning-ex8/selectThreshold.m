@@ -11,7 +11,17 @@ bestF1 = 0;
 F1 = 0;
 
 stepsize = (max(pval) - min(pval)) / 1000;
-for epsilon = min(pval):stepsize:max(pval)
+for epsilon = min(pval):stepsize:max(pval)  
+  p = pval<epsilon;
+  
+  false_positive=sum((p==1)&(yval==0));%p==1 and y==0;
+  false_negative=sum((p==0)&(yval==1));%p==0 and y==1;
+  true_positive = sum((p==1)&(yval==1));
+  
+  prec=true_positive/(true_positive+false_positive);
+  recall=true_positive/(true_positive+false_negative);
+  
+  F1=2*prec*recall/(prec+recall);
     
     % ====================== YOUR CODE HERE ======================
     % Instructions: Compute the F1 score of choosing epsilon as the
@@ -22,19 +32,6 @@ for epsilon = min(pval):stepsize:max(pval)
     %               
     % Note: You can use predictions = (pval < epsilon) to get a binary vector
     %       of 0's and 1's of the outlier predictions
-
-
-
-
-
-
-
-
-
-
-
-
-
     % =============================================================
 
     if F1 > bestF1
